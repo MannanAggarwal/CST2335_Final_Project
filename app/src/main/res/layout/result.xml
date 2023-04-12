@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="310dp"
-        android:layout_height="484dp"
+        android:layout_width="309dp"
+        android:layout_height="458dp"
         app:layout_constraintBottom_toTopOf="@+id/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -32,7 +32,6 @@
         android:id="@+id/textView"
         android:layout_width="310dp"
         android:layout_height="59dp"
-        android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -44,19 +43,18 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/image"
         app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.908" />
+        app:layout_constraintVertical_bias="0.959" />
 
     <Button
         android:id="@+id/load"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="LOAD"
         app:layout_constraintBottom_toBottomOf="@+id/back"
         app:layout_constraintEnd_toStartOf="@+id/back"
         app:layout_constraintHorizontal_bias="0.53"
