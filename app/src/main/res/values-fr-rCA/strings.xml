@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CST2335_Final_Project</string>
+    <string name="textView3">APPLICATION NASA-MARS ROVER</string>
+    <string name="word">Trouver une image</string>
+    <string name="search">RECHERCHER</string>
+    <string name="meaning2">Dernière recherche</string>
+    <string name="alert">Tapez un numéro et cliquez sur le bouton de recherche pour charger l’imageURL</string>
+</resources>
