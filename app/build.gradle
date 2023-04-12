@@ -2,19 +2,17 @@ plugins {
     id 'com.android.application'
 }
 
-android{
+android {
     namespace 'algonquin.cst2335.cst2335_final_project'
     compileSdk 33
 
-    viewBinding {
-        enabled = true
+    buildFeatures{
+        viewBinding true
     }
-    buildFeatures {
-        viewBinding true}
 
     defaultConfig {
         applicationId "algonquin.cst2335.cst2335_final_project"
-        minSdk 22
+        minSdk 28
         targetSdk 33
         versionCode 1
         versionName "1.0"
