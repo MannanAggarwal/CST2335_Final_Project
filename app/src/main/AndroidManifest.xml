@@ -21,6 +21,15 @@ xmlns:tools="http://schemas.android.com/tools">
         android:configChanges="orientation|screenSize"
         android:exported="false" />
     <activity
+        android:name=".ui.SavedWeatherPage"
+        android:noHistory="true"
+        android:configChanges="orientation|screenSize"
+        android:exported="false"/>
+    <activity
+        android:name=".ui.WeatherCurrentPage"
+        android:configChanges="orientation|screenSize"
+        android:exported="false" />
+    <activity
         android:name=".MainActivity"
         android:configChanges="orientation|screenSize"
         android:exported="true">

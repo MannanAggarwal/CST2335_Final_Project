@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import algonquin.cst2335.cst2335_final_project.databinding.ActivityMainBinding;
 import algonquin.cst2335.cst2335_final_project.ui.KittenHomePage;
+import algonquin.cst2335.cst2335_final_project.ui.WeatherCurrentPage;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
@@ -23,11 +24,14 @@ public class MainActivity extends AppCompatActivity {
             Intent placeKittenPage = new Intent(this, KittenHomePage.class);
 
             startActivity(placeKittenPage);
-
-
-
         });
 
+        binding.weather.setOnClickListener(clk-> {
+
+            Intent weatherNowPage = new Intent(this, WeatherCurrentPage.class);
+
+            startActivity(weatherNowPage);
+        });
 
 
     }
