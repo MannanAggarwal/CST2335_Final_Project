@@ -1,4 +1,4 @@
-package algonquin.cst2335.cst2335_final_project.UI;
+package algonquin.cst2335.cst2335_final_project.ui;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -39,16 +39,16 @@ import java.net.URLEncoder;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import algonquin.cst2335.cst2335_final_project.Data.WeatherDatabase;
-import algonquin.cst2335.cst2335_final_project.Data.WeatherItem;
-import algonquin.cst2335.cst2335_final_project.Data.WeatherItemDAO;
+import algonquin.cst2335.cst2335_final_project.data.WeatherDatabase;
+import algonquin.cst2335.cst2335_final_project.data.WeatherItem;
+import algonquin.cst2335.cst2335_final_project.data.WeatherItemDAO;
 import algonquin.cst2335.cst2335_final_project.R;
-import algonquin.cst2335.cst2335_final_project.databinding.ActivityWeatherNowPageBinding;
+import algonquin.cst2335.cst2335_final_project.databinding.ActivityWeatherCurrentPageBinding;
 
 public class WeatherCurrentPage extends AppCompatActivity {
 
 
-    private ActivityWeatherNowPageBinding binding;
+    private ActivityWeatherCurrentPageBinding binding;
     protected String cityName;
 
     protected RequestQueue queue = null;
@@ -108,7 +108,7 @@ public class WeatherCurrentPage extends AppCompatActivity {
                 builder.setMessage("*\tType in the city you would like weather details.\n"
                                 +"•\tClick on “Get Forecast”:"+
                                 "•\tClick on “Saved weather”:\n"
-                                +"*\tYou Can Save the City \n To view the details of day you saved the Data\n\n"  +
+                                +"*\tYou Can Save the City \n To view the details of day you saved the data\n\n"  +
                                 "   *\tYou may navigate between the saved \n destination to display the respective \n       weather.\n" ).
                         setTitle("How to use the WeatherStack?").
                         setNegativeButton("Close", (dialog, cl) -> {
@@ -155,7 +155,7 @@ public class WeatherCurrentPage extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
 
 
-        binding = ActivityWeatherNowPageBinding.inflate(getLayoutInflater());
+        binding = ActivityWeatherCurrentPageBinding.inflate(getLayoutInflater());
         setSupportActionBar(binding.toolbar);
 
         prefs = getSharedPreferences("MyData", Context.MODE_PRIVATE);
