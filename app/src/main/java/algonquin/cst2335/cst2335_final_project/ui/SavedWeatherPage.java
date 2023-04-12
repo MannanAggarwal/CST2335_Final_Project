@@ -1,4 +1,4 @@
-package algonquin.cst2335.cst2335_final_project.UI;
+package algonquin.cst2335.cst2335_final_project.ui;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -25,11 +25,13 @@ import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import algonquin.cst2335.cst2335_final_project.Data.WeatherItemDAO;
-import algonquin.cst2335.cst2335_final_project.Data.WeatherDatabase;
-import algonquin.cst2335.cst2335_final_project.Data.WeatherItem;
-import algonquin.cst2335.cst2335_final_project.Data.WeatherViewModel;
+import algonquin.cst2335.cst2335_final_project.data.WeatherItemDAO;
+import algonquin.cst2335.cst2335_final_project.data.WeatherDatabase;
+import algonquin.cst2335.cst2335_final_project.data.WeatherItem;
+import algonquin.cst2335.cst2335_final_project.data.WeatherViewModel;
 import algonquin.cst2335.cst2335_final_project.R;
+import algonquin.cst2335.cst2335_final_project.databinding.ActivitySavedWeatherBinding;
+import algonquin.cst2335.cst2335_final_project.databinding.WeatherRowBinding;
 
 public class SavedWeatherPage extends AppCompatActivity {
     private RecyclerView.Adapter myAdapter;

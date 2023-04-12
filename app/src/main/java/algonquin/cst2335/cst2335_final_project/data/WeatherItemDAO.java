@@ -1,4 +1,4 @@
-package algonquin.cst2335.cst2335_final_project.Data;
+package algonquin.cst2335.cst2335_final_project.data;
 
 import androidx.room.Dao;
 import androidx.room.Delete;

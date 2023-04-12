@@ -6,8 +6,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import algonquin.cst2335.cst2335_final_project.UI.WeatherCurrentPage;
 import algonquin.cst2335.cst2335_final_project.databinding.ActivityMainBinding;
+import algonquin.cst2335.cst2335_final_project.ui.WeatherCurrentPage;
 
 public class MainActivity extends AppCompatActivity {
 

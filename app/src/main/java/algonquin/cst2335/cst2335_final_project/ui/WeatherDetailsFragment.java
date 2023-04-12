@@ -1,4 +1,4 @@
-package algonquin.cst2335.cst2335_final_project.UI;
+package algonquin.cst2335.cst2335_final_project.ui;
 
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import algonquin.cst2335.cst2335_final_project.Data.WeatherItem;
+import algonquin.cst2335.cst2335_final_project.data.WeatherItem;
 import algonquin.cst2335.cst2335_final_project.databinding.WeatherDetailsBinding;
 
 public class WeatherDetailsFragment extends Fragment {
