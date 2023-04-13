@@ -8,6 +8,7 @@ import android.os.Bundle;
 import algonquin.cst2335.cst2335_final_project.databinding.ActivityMainBinding;
 import algonquin.cst2335.cst2335_final_project.ui.KittenHomePage;
 import algonquin.cst2335.cst2335_final_project.ui.MainActivityNasa;
+import algonquin.cst2335.cst2335_final_project.ui.MainActivityNewYork;
 import algonquin.cst2335.cst2335_final_project.ui.NasaJasdeep;
 import algonquin.cst2335.cst2335_final_project.ui.WeatherCurrentPage;
 
@@ -40,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
             Intent nasaHomePage = new Intent(this, NasaJasdeep.class);
 
             startActivity(nasaHomePage);
+        });
+
+        binding.newyorktimes.setOnClickListener(clk-> {
+
+            Intent newyorkHomePage = new Intent(this, MainActivityNewYork.class);
+
+            startActivity(newyorkHomePage);
         });
 
 

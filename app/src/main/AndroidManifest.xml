@@ -65,6 +65,57 @@ xmlns:tools="http://schemas.android.com/tools">
             android:name="android.app.lib_name"
             android:value="" />
     </activity>
+    <activity
+        android:name="algonquin.cst2335.cst2335_final_project.ui.MainActivityNewYork"
+
+        android:exported="true" >
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        <meta-data
+            android:name="android.app.lib_name"
+
+            android:value=""
+            />
+    </activity>
+    <activity
+        android:name="algonquin.cst2335.cst2335_final_project.ui.ArticleSearch"
+
+        android:exported="true" >
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        <meta-data
+            android:name="android.app.lib_name"
+
+            android:value=""
+            />
+    </activity>
+    <activity
+        android:name="algonquin.cst2335.cst2335_final_project.ui.ArticlesActivity"
+
+        android:exported="true" >
+
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        <meta-data
+            android:name="android.app.lib_name"
+
+            android:value=""
+            />
+    </activity>
 </application>
 
 </manifest>
