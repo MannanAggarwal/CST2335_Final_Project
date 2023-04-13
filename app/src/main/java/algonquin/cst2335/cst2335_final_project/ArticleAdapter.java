@@ -1,145 +1,110 @@
 package algonquin.cst2335.cst2335_final_project;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class ArticleAdapter extends BaseAdapter {
-        private ArrayList<NewsArticle> newsArticleList;
-        private Context context;
-        private boolean online;
+/**
+ * ArticleAdapter class is a custom RecyclerView.Adapter to display a list of articles.
+ * It handles the creation of view holders and binds article data to the views.
+ */
+public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder> {
+    /**
+     *  List of articles to be displayed
+     */
+    private List<Article> articles;
+    /**
+     * Listener for handling article click events
+     */
+    private OnArticleClickListener onArticleClickListener;
 
+    /**
+     * Constructor for the ArticleAdapter.
+     * Initializes the articles list and sets the click listener.
+     */
+    public ArticleAdapter(OnArticleClickListener onArticleClickListener) {
+        this.articles = new ArrayList<>();
+        this.onArticleClickListener = onArticleClickListener;
+    }
 
-        public ArticleAdapter(Context context, ArrayList<NewsArticle> newsArticleList, boolean online) {
-            this.context = context;
-            this.newsArticleList = newsArticleList;
-            this.online = online;
-        }
+    /**
+     * Other methods of the ArticleAdapter class (onCreateViewHolder, onBindViewHolder, getItemCount, etc.)
+     * @param parent
+     * @param viewType
+     * @return
+     */
+    @NonNull
+    @Override
+    public ArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.article_item, parent, false);
+        return new ArticleViewHolder(itemView, onArticleClickListener);
+    }
 
-        @Override
-        public int getCount() {
-            return newsArticleList.size();
-        }
+    @Override
+    public void onBindViewHolder(@NonNull ArticleViewHolder holder, int position) {
+        Article article = articles.get(position);
+        holder.headline.setText(article.getHeadline());
+    }
 
-        @Override
-        public Object getItem(int position) {
-            return newsArticleList.get(position);
-        }
+    @Override
+    public int getItemCount() {
+        return articles.size();
+    }
 
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+        notifyDataSetChanged();
+    }
 
-        public void setNewsArticleList(ArrayList<NewsArticle> newsArticleList) {
-            if (newsArticleList == null){
-                this.newsArticleList = new ArrayList<>();
-            }else {
-                this.newsArticleList = newsArticleList;
-            }
-            notifyDataSetChanged();
-        }
+    public List<Object> getArticles() {
+        return Collections.singletonList(articles);
+    }
 
-        public void addNewsItem(NewsArticle newsArticle){
-            this.newsArticleList.add(newsArticle);
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public View getView(final int position, View convertView, ViewGroup parent) {
-            // if convertView is null inflate the layout for each list row
-            if (convertView == null) {
-                convertView = LayoutInflater.from(context).
-                        inflate(R.layout.item_news, parent, false);
-            }
-            // get current news item to be displayed
-            final NewsArticle newsItemArticle = (NewsArticle) getItem(position);
-
-
-            //initialize text view for the full title
-            TextView fullTitleTextView = convertView.findViewById(R.id.fullTitleTextView);
-
-            ImageButton saveButton = convertView.findViewById(R.id.saveButton);
-            ImageButton deleteButton = convertView.findViewById(R.id.deleteButton);
-            if (online){
-                saveButton.setVisibility(View.VISIBLE);
-                deleteButton.setVisibility(View.GONE);
-            } else {
-                deleteButton.setVisibility(View.VISIBLE);
-                saveButton.setVisibility(View.GONE);
-            }
-            saveButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    saveNewsArticle(newsItemArticle, position);
-                }
-            });
-
-            deleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    deleteNewsArticle(newsItemArticle, position);
-                }
-            });
-
-            //display the full time of the current item
-            if (newsItemArticle.getFullTitle().equalsIgnoreCase("")){
-                fullTitleTextView.setText(newsItemArticle.getTitle());
-            } else {
-                fullTitleTextView.setText(newsItemArticle.getFullTitle());
-            }
-            // returns the view for the current row
-            return convertView;
-        }
+    /**
+     * ArticleViewHolder class is a custom RecyclerView.ViewHolder for displaying articles.
+     * It contains a TextView for the article headline and a click listener.
+     */
+    public class ArticleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private TextView headline;
+        private OnArticleClickListener onArticleClickListener;
 
         /**
-         * This function  saves the news article to mysqlite database
-         * @param newsItemArticle
-         * @param position
+         *  Constructor for the ArticleViewHolder.
+         *  Initializes the UI elements and sets the click listener.
+         * @param itemView
+         * @param onArticleClickListener
          */
-        private void saveNewsArticle(NewsArticle newsItemArticle, int position){
-            NewsArticleDatabase articleDatabase = new NewsArticleDatabase(context);
-            //get the database
-            SQLiteDatabase db = articleDatabase.getWritableDatabase();
-            //create a ContentValues to hold the values
-            ContentValues values = new ContentValues();
-            values.put(NewsArticle.UUID, newsItemArticle.getUuid());
-            values.put(NewsArticle.URL, newsItemArticle.getUrl());
-            values.put(NewsArticle.TITLE, newsItemArticle.getTitle());
-            values.put(NewsArticle.FULL_TITLE, newsItemArticle.getFullTitle());
-            values.put(NewsArticle.SECTION_TITLE, newsItemArticle.getSectionTitle());
-            values.put(NewsArticle.PUBLISHED_ON, newsItemArticle.getPublishedOn());
-            values.put(NewsArticle.MAIN_IMAGE, newsItemArticle.getMainImage());
-
-            //insert the article record to the database
-            long newRowId = db.insert(NewsArticle.TABLE_NAME, null, values);
-            Toast.makeText(context, "The news article has been saved", Toast.LENGTH_LONG).show();
+        public ArticleViewHolder(@NonNull View itemView, OnArticleClickListener onArticleClickListener) {
+            super(itemView);
+            headline = itemView.findViewById(R.id.headline);
+            this.onArticleClickListener = onArticleClickListener;
+            itemView.setOnClickListener(this);
         }
 
-        /**
-         * This function deletes the news article to mysqlite database
-         * @param newsItemArticle
-         * @param position
-         */
-        private void deleteNewsArticle(NewsArticle newsItemArticle, int position){
-            NewsArticleDatabase articleDatabase = new NewsArticleDatabase(context);
-            String selection = NewsArticle.UUID + " = ?";
-            //specify the id of the item to be deleted
-            String[] selectionArgs = { newsItemArticle.getUuid() };
-            // Execute the delete statement
-            int deletedRows = articleDatabase.getReadableDatabase().delete(NewsArticle.TABLE_NAME, selection, selectionArgs);
-            newsArticleList.remove(position);
-            Toast.makeText(context, deletedRows + " item has been deleted successfully", Toast.LENGTH_LONG).show();
-            notifyDataSetChanged();
+        @Override
+        public void onClick(View v) {
+            onArticleClickListener.onArticleClick(getAdapterPosition());
         }
     }
+
+    /**
+     * OnArticleClickListener is an interface for handling article click events.
+     */
+    public interface OnArticleClickListener {
+        /**
+         * Called when an article is clicked in the RecyclerView.
+         * @param position The position of the clicked article in the RecyclerView
+         */
+        void onArticleClick(int position);
+    }
+}
 

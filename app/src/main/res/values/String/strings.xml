@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CST2335_Final_Project</string>
+
+        <string name="app_name">New York Times</string>
+        <string name="help_title" translatable="false">Help</string>
+        <string name="help_message" translatable="false">Enter a search term in the input field and press the "Search" button to find articles from The New York Times. Click on an article in the search results to view more details.</string>
+        <string name="ok" translatable="false">OK</string>
+        <string name="SEARCH" translatable="false">SEARCH</string>
+
+</resources>
