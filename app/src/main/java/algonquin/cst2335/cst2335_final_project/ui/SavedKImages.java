@@ -131,6 +131,10 @@ boolean IsPressed;
 
     }
 
+    /**
+     * This is on create function.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
