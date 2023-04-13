@@ -1,7 +1,5 @@
 package algonquin.cst2335.cst2335_final_project.ui;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -67,7 +65,11 @@ public class WeatherCurrentPage extends AppCompatActivity {
     private Executor thread;
     private final String API_KEY = "96c90f930cc4a93a156d3f749133bcd8";
 
-
+    /*
+     *This class override the method and specifies the menu layout specified.
+     *
+     *
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -79,7 +81,10 @@ public class WeatherCurrentPage extends AppCompatActivity {
 
     }
 
-
+    /*
+     * This class specifies which item is selected by user and based on different cases
+     * it gives the information.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
@@ -100,7 +105,7 @@ public class WeatherCurrentPage extends AppCompatActivity {
 
 
 
-                case R.id.Item_2:
+            case R.id.Item_2:
 
 
 
@@ -145,7 +150,14 @@ public class WeatherCurrentPage extends AppCompatActivity {
         return true;
     }
 
-
+    /*
+     * This method create entry for the activity and creates the layout and the toolbar.
+     * volley is used to handle the HTTP request .
+     * shared preference is created to store the data
+     * entities are created to handle the room database operation.
+     * JSON parsing done for the details of weather.
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -185,7 +197,7 @@ public class WeatherCurrentPage extends AppCompatActivity {
 
 
         binding.weatherSearchButton.setOnClickListener(clk -> {
-            Log.d(TAG, "Button clicked");
+
 
 
             cityName = binding.weatherEditText.getText().toString();
@@ -303,7 +315,7 @@ public class WeatherCurrentPage extends AppCompatActivity {
 
 
             } catch (UnsupportedEncodingException e) {
-                //  Log.i("tag", "onCreate: "+e);
+
 
 
                 throw new RuntimeException(e);

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CST2335_Final_Project</string>
+    <string name="textView3">NASA-MARS ROVER APP</string>
+    <string name="word">Find Picture</string>
+    <string name="search">SEARCH</string>
+    <string name="meaning2">Last Searched</string>
+    <string name="alert">Type a number and click on search button to load the imageURL</string>
 </resources>

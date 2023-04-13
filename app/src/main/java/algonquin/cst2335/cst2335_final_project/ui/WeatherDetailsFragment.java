@@ -23,19 +23,17 @@ public class WeatherDetailsFragment extends Fragment {
     public WeatherDetailsFragment(WeatherItem w) {
 
         selected = w;
-
-
     }
 
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
-
-
         return true;
     }
-
+    /*this methode creates details of selected weather item
+     *and used populate the ui element in fragment
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -60,6 +58,3 @@ public class WeatherDetailsFragment extends Fragment {
 
     }
 }
-
-
-

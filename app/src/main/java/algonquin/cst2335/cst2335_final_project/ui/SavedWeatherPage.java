@@ -3,7 +3,6 @@ package algonquin.cst2335.cst2335_final_project.ui;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,13 +24,15 @@ import java.util.ArrayList;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import algonquin.cst2335.cst2335_final_project.data.WeatherItemDAO;
+import algonquin.cst2335.cst2335_final_project.R;
 import algonquin.cst2335.cst2335_final_project.data.WeatherDatabase;
 import algonquin.cst2335.cst2335_final_project.data.WeatherItem;
+import algonquin.cst2335.cst2335_final_project.data.WeatherItemDAO;
 import algonquin.cst2335.cst2335_final_project.data.WeatherViewModel;
-import algonquin.cst2335.cst2335_final_project.R;
 import algonquin.cst2335.cst2335_final_project.databinding.ActivitySavedWeatherBinding;
 import algonquin.cst2335.cst2335_final_project.databinding.WeatherRowBinding;
+import algonquin.cst2335.cst2335_final_project.ui.WeatherCurrentPage;
+import algonquin.cst2335.cst2335_final_project.ui.WeatherDetailsFragment;
 
 public class SavedWeatherPage extends AppCompatActivity {
     private RecyclerView.Adapter myAdapter;
@@ -57,7 +58,10 @@ public class SavedWeatherPage extends AppCompatActivity {
 
     }
 
-
+    /*
+     * This methode is for handling the menu item selection in saved weather page
+     * based on the items selected
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
@@ -81,7 +85,7 @@ public class SavedWeatherPage extends AppCompatActivity {
 
                 AlertDialog.Builder about_builder = new AlertDialog.Builder(SavedWeatherPage.this);
                 about_builder.setMessage("•\tHere You can see the details of saved city's”\n " +
-                                 "\tYou can delete the City by clicking on the Delete Icon\n "+"If you want to go back to search press weather icon").
+                                "\tYou can delete the City by clicking on the Delete Icon\n "+"If you want to go back to search press weather icon").
                         setTitle("What is Favourite Weather").
                         setNegativeButton("Close", (dialog, cl) -> {
                         }).create().show();
@@ -142,7 +146,11 @@ public class SavedWeatherPage extends AppCompatActivity {
 
     }
 
-
+    /* this method sets the title toolbar.
+     * model is created list is created Evecuter is used to load the data from database
+     * recyclerview is set up.
+     * observer is used to note the changes in selected item and fragment is replaced with new fragment.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,11 +181,11 @@ public class SavedWeatherPage extends AppCompatActivity {
                 mDAO = db.cmDAO();
 
 
-                weatherItems.addAll(mDAO.getAllWeatherItems()); //Once you get the data from database
+                weatherItems.addAll(mDAO.getAllWeatherItems()); //to load all data from database
 
 
                 runOnUiThread(() -> {
-
+                    //You can then load the RecyclerView
                     binding.recycleView.setAdapter(myAdapter);
 
                     setContentView(binding.getRoot());
@@ -187,7 +195,7 @@ public class SavedWeatherPage extends AppCompatActivity {
                         binding.recycleView.smoothScrollToPosition(weatherItems.size() - 1);
                     }
 
-                }); //You can then load the RecyclerView
+                });
             });
 
         }
@@ -195,11 +203,7 @@ public class SavedWeatherPage extends AppCompatActivity {
 
         weatherModel.selectedWeatherItem.observe(this, (newWeatherItemValue) -> {
 
-            Log.i("tag", "onCreate: " + newWeatherItemValue.getName());
-
-
             weatherFragment = new WeatherDetailsFragment(newWeatherItemValue);
-
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentLocation, weatherFragment).addToBackStack("").commit();
 
@@ -238,11 +242,11 @@ public class SavedWeatherPage extends AppCompatActivity {
                 return weatherItems.size();
             }
 
-            //function to check what kind of ChatMessage object is at row position
-            // If the isSend is true, then return 0
-            // so that the onCreateViewHolder checks the viewType and inflates a send_message layout.
-            // If isSend is false, then getItemViewType returns 1 and onCreateViewHolder checks
-            // if the viewType is 1 and inflates a receive_message layout.
+            /*
+             * function to check what kind of Weather object is at row position
+             * and view is loaded for the recycler view.
+             */
+
 
 
             @Override
